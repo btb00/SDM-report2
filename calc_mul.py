@@ -1,27 +1,19 @@
 #!/usr/bin/python3
-
 import re
-                
+
 def calc(A,B):
-        ai=str(A)
-        bi=str(B)
-        p = re.compile('\d+(\.\d+)?')
-        if p.match(ai) or p.match(bi):
-                a=float(ai)
-                b=float(bi)
-                if 0<a and a<b and b<1000:
-                        valid=True
-                else:
-                        valid=False
-        else:
-                valid=False
-                
-        if valid:
-                ans=a*b
-                return ans
-        else:
+        # 1. 整数かどうかチェック (isinstanceを使用)
+        # 仕様: 誤って整数以外の文字列等が入力された場合にも、出力Cに-1を返す
+        if not isinstance(A, int) or not isinstance(B, int):
                 return -1
         
+        # 2. 範囲チェック (1〜999)
+        # 仕様: 1から999までの整数
+        if not (1 <= A <= 999) or not (1 <= B <= 999):
+                return -1
+        
+        # 3. 計算実行
+        return A * B
                 
 def main ():
 	matchstring = ''
